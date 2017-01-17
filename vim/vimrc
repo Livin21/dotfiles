@@ -1,0 +1,65 @@
+execute pathogen#infect()
+
+" Bundles
+" 
+" Bundle: scrooloose/syntastic
+" Bundle: ervandew/supertab
+" Bundle: scrooloose/nerdtree
+" Bundle: airblade/vim-gitgutter
+
+syntax on
+filetype plugin indent on
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populateloc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open =1
+let g:syntastic_check_on_wq = 0
+let g:solarized_termtrans = 1
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+set ruler
+set autowrite
+set autoread
+
+au FocusGained,BufEnter * :silent! !
+
+" Searching
+set gdefault
+set showmatch
+
+set number
+set tabstop=4
+set colorcolumn=110
+
+" html
+set matchpairs+=<:>
+let g:html_indent_tags = 'li\|p'
+
+" scroll
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+
+" Relative Numbering
+set rnu
+function! ToggleNumbersOn()
+		set nu!
+		set rnu
+endfunction
+function! ToggleRelativeOn()
+		set rnu!
+		set nu
+endfunction
+autocmd FocusLost * call ToggleRelativeOn()
+autocmd FocusGained * call ToggleRelativeOn()
+autocmd InsertEnter * call ToggleRelativeOn()
+autocmd InsertLeave * call ToggleRelativeOn()
+
